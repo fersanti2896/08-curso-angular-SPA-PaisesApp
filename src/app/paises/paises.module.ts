@@ -16,7 +16,8 @@ import { PaisesInputComponent } from './components/paises-input/paises-input.com
     PorPaisComponent, 
     PorRegionComponent, 
     VerPaisComponent, 
-    PaisesTablaComponent, PaisesInputComponent
+    PaisesTablaComponent, 
+    PaisesInputComponent
   ],
   imports: [
     CommonModule,
