@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+
 import { PaisService } from '../../services/pais.service';
 
 @Component({
@@ -17,16 +19,27 @@ export class VerPaisComponent implements OnInit {
 
   /* Nos vamos a suscribir a cualquier cambio del URL */
   ngOnInit(): void {
-    this.activateRoute.params
+    /* Primera Forma */
+    /* this.activateRoute.params
         .subscribe(({ id }) => {
           console.log(`El ID del país es: ${id}`);
 
-          /* Aqui hacemos otro observable para traer la información del país */
+          // /* Aqui hacemos otro observable para traer la información del país
           this.paisService.getPaisPorCode(id)
               .subscribe(pais => {
                 console.log(pais);
               })
-        })
+        }) */
+
+      /* Segunda Forma - Usando operadores RxJs */
+      this.activateRoute.params
+          /* switchMap - Devuelve un observable dentro de un observable */
+          .pipe(
+            switchMap((param) => this.paisService.getPaisPorCode(param.id))
+          )
+          .subscribe(resp => {
+            console.log(resp);
+          })  
   }
 
 }
