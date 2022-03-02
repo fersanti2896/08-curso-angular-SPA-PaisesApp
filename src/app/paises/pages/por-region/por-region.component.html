@@ -1,1 +1,14 @@
-<p>por-region works!</p>
+
+<h2>Por región <small>region activa</small></h2>
+<hr>
+
+<h4>Seleccione la región</h4>
+<div class="row">
+    <div class="col">
+        <button *ngFor="let region of regiones"
+                class="btn btn-outline-primary"
+        >
+            {{ region }}
+        </button>
+    </div>
+</div>
